@@ -16,15 +16,13 @@
 					parts: [
 						     'i18n>masterTitleCount',
 						      'masterView>/titleCount'
-					       ],
-						   
+					       ],						   
 					formatter: 'formatMessage'}"/>
 
 		</semantic:titleHeading>
 		<semantic:content>
 			<!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
 			<!--  items="{/orderTab}" -->
-
 			<List
 				id="list"
 				width="auto"
@@ -99,7 +97,9 @@
 
 
              <items>
-				<ObjectListItem 
+				<ObjectListItem
+				type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+				press="onSelectionChange" 
 				title="{
 						 parts: [
 								{path : 'i18n>commonItemTitle2'},
@@ -108,9 +108,7 @@
 				number="{
 							path: 'OrderDate',							
 							formatter:'.formatter.date_epoch_utc'
-						}"
-
-				press="onSelectionChange" >
+						}">
 
 				 <firstStatus>
 							<ObjectStatus
@@ -135,10 +133,10 @@
 						<attributes>
 							<ObjectAttribute id="companyName" text="{CustomerName}" />
 							<ObjectAttribute title="{i18n>commonItemShipped}"
-								text="{
-										path: 'ShippedDate',							
-										formatter:'.formatter.date_epoch_utc_2'
-									}" />
+								text="{= ${ShippedDate} 
+									? ${ path: 'ShippedDate',							
+										 formatter:'.formatter.date_epoch_utc_2' }
+									: ${i18n>commonItemNotYetShipped} }" />
 						</attributes>
                 </ObjectListItem>                   
               </items>

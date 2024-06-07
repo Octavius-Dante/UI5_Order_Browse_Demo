@@ -20,7 +20,6 @@ sap.ui.define([
 		 * @public
 		 * @override
 		 */
-
 		init : function () {
 
 			// set the device model
@@ -31,7 +30,19 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
+		},
 
+		/**
+		 * The component is destroyed by UI5 automatically.
+		 * In this method, the ListSelector and ErrorHandler are destroyed.
+		 * @public
+		 * @override
+		 */
+		destroy : function () {
+			this.oListSelector.destroy();
+			this._oErrorHandler.destroy();
+			// call the base component's destroy function
+			UIComponent.prototype.destroy.apply(this, arguments);
 		},
 
 		getContentDensityClass : function() {
