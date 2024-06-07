@@ -1,0 +1,35 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+controllerName="sap.ui.demo.orderbrowser.controller.App"
+async="true"
+displayBlock="true"
+height="100%"	
+xmlns:f="sap.f"	>
+
+<!-- Defining container control - it contains other views 
+
+> This container control will be parent for other views 
+> There are different types of container control
+
+    ~ now we are using type : App container control
+
+-->
+
+	<App
+		id="app"
+		busy="{appView>/busy}"
+		busyIndicatorDelay="{appView>/delay}">
+		<f:FlexibleColumnLayout
+			id="layout"
+			layout="{appView>/layout}"
+			backgroundDesign="Translucent">
+		</f:FlexibleColumnLayout>
+	</App>
+
+<!-- <SplitApp id="appCon" /> -->
+
+<!-- <App id="appCon" /> -->
+
+</mvc:View>
+
+	
+

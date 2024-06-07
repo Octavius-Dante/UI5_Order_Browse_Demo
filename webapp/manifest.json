@@ -1,0 +1,109 @@
+{
+	"_version": "1.21.0",
+	"sap.app": {
+		"id": "sap.ui.demo.orderbrowser",
+		"type": "application",
+		"resources": "resources.json",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				""
+			],
+			"fallbackLocale": ""
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://detail-view",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "sap.ui.demo.orderbrowser.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.98.0",
+			"libs": {
+				"sap.f": {},
+				"sap.m": {},
+				"sap.ui.core": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+
+
+		"models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "type": "sap.ui.model.json.JSONModel",
+                "uri": "model/mockdata/Orders.json" 
+            }
+        },
+
+
+		"routing": {
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"type": "View",
+				"viewType": "XML",
+				"path": "sap.ui.demo.orderbrowser.view",
+				"controlId": "layout",
+				"controlAggregation": "beginColumnPages",
+				"bypassed": {
+					"target": "notFound"
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "master",
+					"target": "master"
+				},
+				{
+					"pattern": "Orders/{objectId}/:?query:",
+					"name": "object",
+					"target": ["master","object"]
+				}
+			],
+			"targets": {
+				"master": {
+					"name": "Master",
+					"level": 1,
+					"id": "master"
+				},
+				"object": {
+					"name": "Detail",
+					"id": "detail",
+					"level": 1,
+					"controlAggregation": "midColumnPages"
+				}
+			}
+		}
+	}
+}
