@@ -126,6 +126,22 @@ sap.ui.define(
       },
       /////////////////////////////////////////////////////////////////////////
 
+
+      /**
+       * Used to create GroupHeaders with non-capitalized caption.
+       * These headers are inserted into the master list to
+       * group the master list's items.
+       * @param {Object} oGroup group whose text is to be displayed
+       * @public
+       * @returns {sap.m.GroupHeaderListItem} group header with non-capitalized caption.
+       */
+      createGroupHeader : function (oGroup) {
+        return new GroupHeaderListItem({
+          title : oGroup.text,
+          upperCase : false
+        });
+      },
+
       // onSelectionChange : function (oEvent) {
       // 	var oList = oEvent.getSource(),
       // 		bSelected = oEvent.getParameter("selected");

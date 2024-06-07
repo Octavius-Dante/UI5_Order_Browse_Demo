@@ -36,15 +36,14 @@
 						descending: true
 					},
 					groupHeaderFactory: 'createGroupHeader'
-					}"
+				}"
 
 				busyIndicatorDelay="{masterView>/delay}"
 				mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
 				growing="true"
-				growingScrollToLoad="true"
-				selectionChange="onSelectionChange"
+				growingScrollToLoad="true"				
 				updateFinished="onUpdateFinished"
-				>
+				selectionChange="onSelectionChange">
 
 				<noData>
 					<IllustratedMessage
