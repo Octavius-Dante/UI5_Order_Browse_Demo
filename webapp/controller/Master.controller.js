@@ -46,9 +46,9 @@ sap.ui.define(
         ///////////////////////////////////////////////////////////////////////////////////////////
         this._oGroupFunctions = {
           CompanyName: function (oContext) {
+            // var sCompanyName = oContext.getProperty("Customer/CompanyName"); 
+            var sCompanyName = oContext.getProperty("customerTab/CompanyName");
             // debugger;
-            var sCompanyName = oContext.getProperty("Customer/CompanyName");
-            // var sCompanyName = oContext.getProperty("CompanyName"); 
             return {
               key: sCompanyName,
               text: sCompanyName,
@@ -405,7 +405,8 @@ sap.ui.define(
         // apply sorter to binding
         if (mParams.groupItem) {
           mParams.groupItem.getKey() === "CompanyName"
-            ? (sPath = "Customer/" + mParams.groupItem.getKey())
+            // ? (sPath = "Customer/" + mParams.groupItem.getKey())
+            ? (sPath = "/customerTab" + mParams.groupItem.getKey())
             : (sPath = mParams.groupItem.getKey());
           bDescending = mParams.groupDescending;
           var vGroup = this._oGroupFunctions[mParams.groupItem.getKey()];
