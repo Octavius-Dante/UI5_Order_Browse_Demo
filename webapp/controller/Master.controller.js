@@ -28,6 +28,16 @@ sap.ui.define(
     return BaseController.extend("sap.ui.demo.orderbrowser.controller.Master", {
       formatter: formatter,
 
+
+      /* =========================================================== */
+      /* lifecycle methods                                           */
+      /* =========================================================== */
+
+      /**
+       * Called when the master list controller is instantiated. It sets up the event handling for the master/detail communication and other lifecycle tasks.
+       * @public
+       */
+
       onInit: function () {
         var oList = this.byId("list"),
           oViewModel = this._createViewModel(),
@@ -36,7 +46,7 @@ sap.ui.define(
         ///////////////////////////////////////////////////////////////////////////////////////////
         this._oGroupFunctions = {
           CompanyName: function (oContext) {
-            var sCompanyName = oContext.getProperty("Customer/CompanyName");
+            var sCompanyName = oContext.getProperty("customerTab/CompanyName");            
             return {
               key: sCompanyName,
               text: sCompanyName,
@@ -44,8 +54,17 @@ sap.ui.define(
           },
 
           OrderDate: function (oContext) {
-            var oDate = oContext.getProperty("OrderDate"),
-              iYear = oDate.getFullYear(),
+            // var oDate = oContext.getProperty("OrderDate"),
+            
+            // following logic is written due to EPOCH timeline date in model file
+            var InputDate = oContext.getProperty("OrderDate");
+            var strDate = InputDate;
+            var strdate1 = strDate.replace('/Date(',''); ;
+            var strdate2 = strdate1.replace(')/','');           
+            var epochTime = Number(strdate2);
+            var oDate = new Date(epochTime);  
+
+          var iYear = oDate.getFullYear(),
               iMonth = oDate.getMonth() + 1,
               sMonthName = this._oMonthNameFormat.format(oDate);
 
@@ -59,7 +78,16 @@ sap.ui.define(
           }.bind(this),
 
           ShippedDate: function (oContext) {
-            var oDate = oContext.getProperty("ShippedDate");
+            // var oDate = oContext.getProperty("ShippedDate");
+
+            // following logic is written due to EPOCH timeline date in model file
+            var InputDate = oContext.getProperty("ShippedDate");
+            var strDate = InputDate;
+            var strdate1 = strDate.replace('/Date(',''); ;
+            var strdate2 = strdate1.replace(')/','');           
+            var epochTime = Number(strdate2);
+            var oDate = new Date(epochTime);              
+
             // Special handling needed because shipping date may be empty (=> not yet shipped).
             if (oDate != null) {
               var iYear = oDate.getFullYear(),
