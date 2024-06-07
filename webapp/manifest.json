@@ -61,8 +61,29 @@
             },
             "": {
                 "type": "sap.ui.model.json.JSONModel",
-                "uri": "model/mockdata/Orders.json" 
-            }
+                "uri": "model/mockdata/Orders.json",
+				"preload": true
+            },
+			"Customer": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "./mockdata/Customer.json",
+				"preload": true
+			},
+			"Product": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "./mockdata/Product.json",
+				"preload": true
+			},
+			"Order_Details": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "./mockdata/Order_Details.json",
+				"preload": true
+			},
+			"Employee": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "./mockdata/Employee.json",
+				"preload": true
+			}
         },
 
 

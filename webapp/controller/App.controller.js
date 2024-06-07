@@ -22,7 +22,7 @@ sap.ui.define([
             });
             this.setModel(oViewModel, "appView");
             oViewModel.loadData("model/mockdata/Orders.json");
-            return oViewModel;      
+            // return oViewModel;      
 			
 			// fnSetAppNotBusy = function() {
 			// 	oViewModel.setProperty("/busy", false);

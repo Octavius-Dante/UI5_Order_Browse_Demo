@@ -46,7 +46,9 @@ sap.ui.define(
         ///////////////////////////////////////////////////////////////////////////////////////////
         this._oGroupFunctions = {
           CompanyName: function (oContext) {
-            var sCompanyName = oContext.getProperty("customerTab/CompanyName");            
+            // debugger;
+            var sCompanyName = oContext.getProperty("Customer/CompanyName");
+            // var sCompanyName = oContext.getProperty("CompanyName"); 
             return {
               key: sCompanyName,
               text: sCompanyName,
