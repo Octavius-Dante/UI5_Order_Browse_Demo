@@ -46,15 +46,12 @@ sap.ui.define(
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         this._oGroupFunctions = {
-          CompanyName: function (oContext, oEvent) {
+          CompanyName: function (oContext) {
 
             // return {
             //     key: sCompanyName,
             //     text: sCompanyName,
             //   };
-             
-          
-            
 
             // var sCompanyName = oContext.getProperty("Customer/CompanyName"); 
             // var sCompanyName = oContext.getProperty("/customerTab/CompanyName");
