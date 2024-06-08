@@ -25,10 +25,6 @@ xmlns:f="sap.f"	>
 		</f:FlexibleColumnLayout>
 	</App>
 
-<!-- <SplitApp id="appCon" /> -->
-
-<!-- <App id="appCon" /> -->
-
 </mvc:View>
 
 	

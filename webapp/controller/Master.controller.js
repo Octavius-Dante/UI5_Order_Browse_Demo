@@ -24,11 +24,11 @@ sap.ui.define(
     DateFormat
   ) {
     "use strict";
-
+    // var objEvent;
     return BaseController.extend("sap.ui.demo.orderbrowser.controller.Master", {
+    
       formatter: formatter,
-      count: 0,
-
+     
       /* =========================================================== */
       /* lifecycle methods                                           */
       /* =========================================================== */
@@ -46,33 +46,14 @@ sap.ui.define(
 
         ///////////////////////////////////////////////////////////////////////////////////////////
         this._oGroupFunctions = {
-          CompanyName: function (oContext) {
+          CompanyName: function (oContext, oEvent) {
 
-            debugger;
-
-          // // New Grouping Filter for Orders-CustomerName / Customer-CompanyName
-          // // const oGroupItem = oEvent.getParameter('groupItem');
-          // // const sDescending = oEvent.getParameter('groupDescending');
-          var oGroupItem = oContext.getParameter('groupItem');
-          var sDescending = oContext.getParameter('groupDescending');        
-          // // debugger;
-          if (oGroupItem.getKey() === "CompanyName"){
-          //   //CompanyName is available in Customer.json
-
-          debugger;
-          //   // CustomerName is available in Orders.json  
-          //   // Grouping the items in the view according to Customer Name 
-          //   oGroupItem.setKey("CustomerName"); 
-          //   this.getView()
-          //   .byId('list')
-          //   .getBinding('items')
-          //   .sort(oGroupItem ? [new Sorter(oGroupItem.getKey(), sDescending, true /* group */)] : [])
-            
-            return {
-                key: sCompanyName,
-                text: sCompanyName,
-              };
-          }
+            // return {
+            //     key: sCompanyName,
+            //     text: sCompanyName,
+            //   };
+             
+          
             
 
             // var sCompanyName = oContext.getProperty("Customer/CompanyName"); 
@@ -398,6 +379,25 @@ sap.ui.define(
        * @public
        */
       onConfirmViewSettingsDialog: function (oEvent) {
+
+          // // New Grouping Filter for Orders-CustomerName / Customer-CompanyName                       
+          // if (oEvent.getParameter('groupItem').getKey() === "CustomerName"){
+
+          //   var oGroupItem = oEvent.getParameter('groupItem');
+          //   var sDescending = oEvent.getParameter('groupDescending'); 
+            
+          //   // Grouping the items in the view according to Customer Name 
+          // oGroupItem.setKey("CustomerName"); 
+          //   this.getView()
+          //   .byId('list')
+          //   .getBinding('items')
+          //   .sort(oGroupItem ? [new Sorter(oGroupItem.getKey(), sDescending, true /* group */)] : [])
+          //   return {
+          //       key: sCompanyName,
+          //       text: sCompanyName,
+          //     };             
+          // }
+
         var aFilterItems = oEvent.getParameter("filterItems"),
           aFilters = [],
           aCaptions = [];
@@ -425,8 +425,8 @@ sap.ui.define(
        * @param {sap.ui.base.Event} oEvent the confirm event
        * @private
        */
-      _applyGrouper: function (oEvent) {
-
+      _applyGrouper: function (oEvent) {        
+        debugger;
         var mParams = oEvent.getParameters(),
           sPath,
           bDescending,
@@ -438,6 +438,30 @@ sap.ui.define(
             ? (sPath = "Customer/" + mParams.groupItem.getKey())
             : (sPath = mParams.groupItem.getKey());
           bDescending = mParams.groupDescending;
+
+          if (mParams.groupItem.getKey() === "CompanyName"){
+              // // New Grouping Filter for Orders-CustomerName / Customer-CompanyName                       
+              // if (oEvent.getParameter('groupItem').getKey() === "CompanyName"){
+
+              //   var oGroupItem = oEvent.getParameter('groupItem');
+              //   var sDescending = oEvent.getParameter('groupDescending'); 
+                
+              //   // Grouping the items in the view according to Customer Name 
+              // oGroupItem.setKey("CustomerName"); 
+              //   this.getView()
+              //   .byId('list')
+              //   .getBinding('items')
+              //   .sort(oGroupItem ? [new Sorter(oGroupItem.getKey(), sDescending, true /* group */)] : [])
+              //   return {
+              //       key: sCompanyName,
+              //       text: sCompanyName,
+              //     };             
+              // }
+          }else{
+            var vGroup = this._oGroupFunctions[mParams.groupItem.getKey()];
+            aSorters.push(new Sorter(sPath, bDescending, vGroup));            
+          }
+
           var vGroup = this._oGroupFunctions[mParams.groupItem.getKey()];
           aSorters.push(new Sorter(sPath, bDescending, vGroup));
         }
