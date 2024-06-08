@@ -380,24 +380,6 @@ sap.ui.define(
        */
       onConfirmViewSettingsDialog: function (oEvent) {
 
-          // // New Grouping Filter for Orders-CustomerName / Customer-CompanyName                       
-          // if (oEvent.getParameter('groupItem').getKey() === "CustomerName"){
-
-          //   var oGroupItem = oEvent.getParameter('groupItem');
-          //   var sDescending = oEvent.getParameter('groupDescending'); 
-            
-          //   // Grouping the items in the view according to Customer Name 
-          // oGroupItem.setKey("CustomerName"); 
-          //   this.getView()
-          //   .byId('list')
-          //   .getBinding('items')
-          //   .sort(oGroupItem ? [new Sorter(oGroupItem.getKey(), sDescending, true /* group */)] : [])
-          //   return {
-          //       key: sCompanyName,
-          //       text: sCompanyName,
-          //     };             
-          // }
-
         var aFilterItems = oEvent.getParameter("filterItems"),
           aFilters = [],
           aCaptions = [];
