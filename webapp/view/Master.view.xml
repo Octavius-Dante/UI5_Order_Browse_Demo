@@ -49,6 +49,7 @@
 					<IllustratedMessage
 						title="{masterView>/noDataText}"
 						illustrationType="sapIllus-NoFilterResults"
+						
 					/>
 						<!-- enableDefaultTitleAndDescription="false" -->
 				</noData>

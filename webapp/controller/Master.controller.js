@@ -47,7 +47,7 @@ sap.ui.define(
         this._oGroupFunctions = {
           CompanyName: function (oContext) {
             // var sCompanyName = oContext.getProperty("Customer/CompanyName"); 
-            var sCompanyName = oContext.getProperty("customerTab/CompanyName");
+            var sCompanyName = oContext.getProperty("/customerTab/CompanyName");
             // debugger;
             return {
               key: sCompanyName,
@@ -398,6 +398,7 @@ sap.ui.define(
        * @private
        */
       _applyGrouper: function (oEvent) {
+        debugger;
         var mParams = oEvent.getParameters(),
           sPath,
           bDescending,
@@ -406,7 +407,7 @@ sap.ui.define(
         if (mParams.groupItem) {
           mParams.groupItem.getKey() === "CompanyName"
             // ? (sPath = "Customer/" + mParams.groupItem.getKey())
-            ? (sPath = "/customerTab" + mParams.groupItem.getKey())
+            ? (sPath = "/customerTab/" + mParams.groupItem.getKey())
             : (sPath = mParams.groupItem.getKey());
           bDescending = mParams.groupDescending;
           var vGroup = this._oGroupFunctions[mParams.groupItem.getKey()];
