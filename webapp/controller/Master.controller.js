@@ -446,11 +446,6 @@ sap.ui.define(
                 var oGroupItem = oEvent.getParameter('groupItem');
                 var sDescending = oEvent.getParameter('groupDescending'); 
 
-                // Earlier key mainpulation was written here to od the grouping 
-                // Orginal code was written based on Customer.json file used as anotehr model
-                // Calling another model and filter was applied here 
-                // Same Order.json model itself is used here for grouping 
-
                 // Grouping the items in the view according to Customer Name
                 this.getView()
                 .byId('list')
