@@ -439,25 +439,30 @@ sap.ui.define(
             : (sPath = mParams.groupItem.getKey());
           bDescending = mParams.groupDescending;
 
-          if (mParams.groupItem.getKey() === "CompanyName"){
-              // // New Grouping Filter for Orders-CustomerName / Customer-CompanyName                       
-              // if (oEvent.getParameter('groupItem').getKey() === "CompanyName"){
+          // New code block for grouping by customer name
+/////////////////////////////////////////////////////////////////////////////////////////          
+            if (mParams.groupItem.getKey() === "CustomerName"){
+                if (oEvent.getParameter('groupItem').getKey() === "CustomerName"){
+                var oGroupItem = oEvent.getParameter('groupItem');
+                var sDescending = oEvent.getParameter('groupDescending'); 
 
-              //   var oGroupItem = oEvent.getParameter('groupItem');
-              //   var sDescending = oEvent.getParameter('groupDescending'); 
-                
-              //   // Grouping the items in the view according to Customer Name 
-              // oGroupItem.setKey("CustomerName"); 
-              //   this.getView()
-              //   .byId('list')
-              //   .getBinding('items')
-              //   .sort(oGroupItem ? [new Sorter(oGroupItem.getKey(), sDescending, true /* group */)] : [])
-              //   return {
-              //       key: sCompanyName,
-              //       text: sCompanyName,
-              //     };             
-              // }
-          }else{
+                // Earlier key mainpulation was written here to od the grouping 
+                // Orginal code was written based on Customer.json file used as anotehr model
+                // Calling another model and filter was applied here 
+                // Same Order.json model itself is used here for grouping 
+
+                // Grouping the items in the view according to Customer Name
+                this.getView()
+                .byId('list')
+                .getBinding('items')
+                .sort(oGroupItem ? [new Sorter(oGroupItem.getKey(), sDescending, true /* group */)] : [])                
+                return {
+                    key: sCompanyName,
+                    text: sCompanyName,
+                  };                               
+              }
+/////////////////////////////////////////////////////////////////////////////////////////              
+          }else{ // if shipped date / ordered date grouping regualr logic 
             var vGroup = this._oGroupFunctions[mParams.groupItem.getKey()];
             aSorters.push(new Sorter(sPath, bDescending, vGroup));            
           }

@@ -25,7 +25,7 @@
 		<groupItems>
 			<ViewSettingsItem
 				text="{i18n>masterGroupCustomer}"
-				key="CompanyName"/>
+				key="CustomerName"/>
 				<!-- key="CompanyName" -->
 				<!-- key="CustomerName" -->
 			<ViewSettingsItem
