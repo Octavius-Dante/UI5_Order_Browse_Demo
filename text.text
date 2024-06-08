@@ -42,3 +42,37 @@
 				"uri": "model/mockdata/Employee.json",
 				"preload": true
 			}
+
+------------------------------------------------
+
+		"resources":"resources.json",
+		"dataSources":{
+			"table_filter":{
+				"uri": "model/mockdata/Customer.json",
+				"type":"JSON"
+			}
+		},	
+
+---------------------------------------------------		
+
+,
+			"Customer": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "table_filter",				
+				"preload": true
+			},
+			"Product": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/mockdata/Product.json",
+				"preload": true
+			},
+			"Order_Details": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/mockdata/Order_Details.json",
+				"preload": true
+			},
+			"Employee": {
+				"type": "sap.ui.model.json.JSONModel",				
+				"uri": "model/mockdata/Employee.json",
+				"preload": true
+			}

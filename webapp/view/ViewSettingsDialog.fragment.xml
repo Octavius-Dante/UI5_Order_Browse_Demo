@@ -26,6 +26,8 @@
 			<ViewSettingsItem
 				text="{i18n>masterGroupCustomer}"
 				key="CompanyName"/>
+				<!-- key="CompanyName" -->
+				<!-- key="CustomerName" -->
 			<ViewSettingsItem
 				text="{i18n>masterGroupOrderPeriod}"
 				key="OrderDate"/>

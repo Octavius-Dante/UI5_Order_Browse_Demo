@@ -27,7 +27,7 @@ sap.ui.define(
 
     return BaseController.extend("sap.ui.demo.orderbrowser.controller.Master", {
       formatter: formatter,
-
+      count: 0,
 
       /* =========================================================== */
       /* lifecycle methods                                           */
@@ -43,16 +43,60 @@ sap.ui.define(
           oViewModel = this._createViewModel(),
           iOriginalBusyDelay = oList.getBusyIndicatorDelay();
 
+
         ///////////////////////////////////////////////////////////////////////////////////////////
         this._oGroupFunctions = {
           CompanyName: function (oContext) {
-            // var sCompanyName = oContext.getProperty("Customer/CompanyName"); 
-            var sCompanyName = oContext.getProperty("/customerTab/CompanyName");
-            // debugger;
+
+            debugger;
+
+          // // New Grouping Filter for Orders-CustomerName / Customer-CompanyName
+          // // const oGroupItem = oEvent.getParameter('groupItem');
+          // // const sDescending = oEvent.getParameter('groupDescending');
+          var oGroupItem = oContext.getParameter('groupItem');
+          var sDescending = oContext.getParameter('groupDescending');        
+          // // debugger;
+          if (oGroupItem.getKey() === "CompanyName"){
+          //   //CompanyName is available in Customer.json
+
+          debugger;
+          //   // CustomerName is available in Orders.json  
+          //   // Grouping the items in the view according to Customer Name 
+          //   oGroupItem.setKey("CustomerName"); 
+          //   this.getView()
+          //   .byId('list')
+          //   .getBinding('items')
+          //   .sort(oGroupItem ? [new Sorter(oGroupItem.getKey(), sDescending, true /* group */)] : [])
+            
             return {
-              key: sCompanyName,
-              text: sCompanyName,
-            };
+                key: sCompanyName,
+                text: sCompanyName,
+              };
+          }
+            
+
+            // var sCompanyName = oContext.getProperty("Customer/CompanyName"); 
+            // var sCompanyName = oContext.getProperty("/customerTab/CompanyName");
+            
+            // 1 - planned to attempt - not tried 
+            // key: oGroup.oModel.oData.Steps[oGroup.sPath.split("/")[2]].Category
+
+            // 2 - planned to attempt - not tried 
+            // var dataModel = this.getOwnerComponent().getModel("tableData");
+            // this.getView().setModel(dataModel, "DataModel");
+
+            // 3- planned to attempt - not tried 
+            // this.getView().byId("idControl").setModel(oModel)
+
+            // var sAllData = oContext.getProperty("/");
+            // var sTab = sAllData.customerTab;
+            // var sCompanyName = sTab[this.count].getProperty("CompanyName");            
+            // this.count = this.count + 1;
+
+            // return {
+            //   key: sCompanyName,
+            //   text: sCompanyName,
+            // };
           },
 
           OrderDate: function (oContext) {
@@ -155,22 +199,6 @@ sap.ui.define(
         }
       },
       /////////////////////////////////////////////////////////////////////////
-
-
-      /**
-       * Used to create GroupHeaders with non-capitalized caption.
-       * These headers are inserted into the master list to
-       * group the master list's items.
-       * @param {Object} oGroup group whose text is to be displayed
-       * @public
-       * @returns {sap.m.GroupHeaderListItem} group header with non-capitalized caption.
-       */
-      createGroupHeader : function (oGroup) {
-        return new GroupHeaderListItem({
-          title : oGroup.text,
-          upperCase : false
-        });
-      },
 
       // onSelectionChange : function (oEvent) {
       // 	var oList = oEvent.getSource(),
@@ -398,16 +426,16 @@ sap.ui.define(
        * @private
        */
       _applyGrouper: function (oEvent) {
-        debugger;
+
         var mParams = oEvent.getParameters(),
           sPath,
           bDescending,
           aSorters = [];
         // apply sorter to binding
         if (mParams.groupItem) {
+          // old code conditon check -- dont change 
           mParams.groupItem.getKey() === "CompanyName"
-            // ? (sPath = "Customer/" + mParams.groupItem.getKey())
-            ? (sPath = "/customerTab/" + mParams.groupItem.getKey())
+            ? (sPath = "Customer/" + mParams.groupItem.getKey())
             : (sPath = mParams.groupItem.getKey());
           bDescending = mParams.groupDescending;
           var vGroup = this._oGroupFunctions[mParams.groupItem.getKey()];

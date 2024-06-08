@@ -28,12 +28,13 @@
 				width="auto"
 				class="sapFDynamicPageAlignContent"
 
-				items="{
-					path: '/orderTab',
+				items="{ 
+					path: '/orderTab', 
 					parameters: {expand: 'Customer'},
 					sorter: {
 						path: 'OrderID',
 						descending: true
+						
 					},
 					groupHeaderFactory: 'createGroupHeader'
 				}"
@@ -44,6 +45,15 @@
 				growingScrollToLoad="true"				
 				updateFinished="onUpdateFinished"
 				selectionChange="onSelectionChange">
+
+					<!-- path: '/orderTab',
+					parameters: {expand: 'Customer'},
+					sorter: {
+						path: 'OrderID',
+						path: 'CustomerName',
+						descending: true,
+						group: true
+					}, -->
 
 				<noData>
 					<IllustratedMessage
