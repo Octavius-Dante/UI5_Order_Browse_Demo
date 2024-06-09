@@ -1,0 +1,31 @@
+<core:FragmentDefinition 
+    xmlns:core="sap.ui.core" 
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form">
+	<VBox>
+		<f:SimpleForm id="SimpleFormShipAddress"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="{i18n>detailShippingAddressTitle}"
+			labelSpanL="3"
+			labelSpanM="3"
+			emptySpanL="4"
+			emptySpanM="4"
+			columnsL="1"
+			columnsM="1" >
+			<f:content>
+				<Label text="{i18n>detailName}" />
+				<Text text="{detailView>/ShipName}" />
+				<Label text="{i18n>detailShippingStreet}" />
+				<Text text="{detailView>/ShipAddress}" />
+				<Label text="{i18n>detailShippingZIPCodeCity}" />
+				<Text text="{detailView>/ShipPostalCode} {detailView>/ShipCity}" />
+				<Label text="{i18n>detailShippingRegion}" />
+				<Text text="{detailView>/ShipRegion}" />
+				<Label text="{i18n>detailShippingCountry}" />
+				<Text text="{detailView>/ShipCountry}" />
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

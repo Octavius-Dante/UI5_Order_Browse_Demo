@@ -1,0 +1,167 @@
+<mvc:View
+	controllerName="sap.ui.demo.orderbrowser.controller.Detail"
+	xmlns="sap.m"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout"
+	xmlns:odata="sap.ui.comp.odata"
+	xmlns:f="sap.ui.layout.form">
+	<semantic:SemanticPage
+		id="page"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}"
+		core:require="{
+			formatMessage: 'sap/base/strings/formatMessage',
+			DateType: 'sap/ui/model/type/Date'
+		}">
+		<semantic:titleHeading>
+			<Title
+				text="{detailView>/OrderID}"/>
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<l:HorizontalLayout>
+				<l:VerticalLayout class="sapUiMediumMarginEnd">
+					<ObjectAttribute
+						title="{i18n>commonCustomerName}"
+						text="{detailView>/CompanyName}"/>
+					<ObjectAttribute
+						title="{i18n>detailOrderDate}"
+						text="{detailView>/OrderDate}"/>
+					<ObjectAttribute
+						title="{i18n>commonItemShipped}"
+						text="{= ${detailView>/ShippedDate} ?
+							 ${detailView>/ShippedDate}
+							:${i18n>commonItemNotYetShipped} }"/>
+				</l:VerticalLayout>
+				<l:VerticalLayout>
+					<Label text="{i18n>priceText}"/>
+					<ObjectNumber
+						number="{
+							parts: [
+								{path:'detailView>/totalOrderAmount'},
+								{path:'detailView>/currency'}
+							],
+							type: 'sap.ui.model.type.Currency',
+							formatOptions: {
+								showMeasure: false
+							}
+						}"
+						numberUnit="{detailView>/currency}"/>
+				</l:VerticalLayout>
+			</l:HorizontalLayout>
+		</semantic:headerContent>
+		<semantic:content>
+			<l:VerticalLayout>
+				<IconTabBar
+					id="iconTabBar"
+					headerBackgroundDesign="Transparent"
+					select=".onTabSelect"
+					selectedKey="{detailView>/selectedTab}">
+					<items>
+						<IconTabFilter
+							text="Shipping"
+							id="iconTabFilterShipping"
+							icon="sap-icon://shipping-status">
+							<core:Fragment fragmentName="sap.ui.demo.orderbrowser.fragments.Shipping" type="XML"/>
+						</IconTabFilter>
+						<IconTabFilter
+							text="Processor"
+							id="iconTabFilterProcessor"
+							icon="sap-icon://employee">
+							<core:Fragment fragmentName="sap.ui.demo.orderbrowser.fragments.Processor" type="XML"/>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+				<Table
+					id="lineItemsList"
+					class="sapUiSmallMarginTop"
+					width="auto"
+					items="{Order_Details}"
+					updateFinished=".onListUpdateFinished"
+					noDataText="{i18n>detailLineItemTableNoDataText}"
+					busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+					<headerToolbar>
+						<Toolbar id="lineItemsToolbar">
+							<Title
+								id="lineItemsHeader"
+								text="{detailView>/lineItemListTitle}"/>
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Text text="{i18n>detailLineItemTableIDColumn}"/>
+						</Column>
+						<Column
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							hAlign="End">
+							<Text text="{i18n>detailLineItemTableUnitPriceColumn}"/>
+						</Column>
+						<Column
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							hAlign="End">
+							<Text text="{i18n>detailLineItemTableUnitQuantityColumn}"/>
+						</Column>
+						<Column
+							minScreenWidth="Tablet"
+							demandPopin="true"
+							hAlign="End">
+							<Text text="{i18n>detailLineItemTableTotalColumn}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<ObjectIdentifier
+									title="{Product/ProductName}"
+									text="{ProductID}"/>
+								<ObjectNumber
+									number="{
+										path: 'UnitPrice',
+										formatter: '.formatter.currencyValue'
+									}"
+									unit="{detailView>/currency}"/>
+								<ObjectAttribute
+									text="{Quantity}"/>
+								<ObjectNumber
+									number="{
+										parts:[
+											{path:'Quantity'},
+											{path:'UnitPrice'},
+											{path:'detailView>/currency'}
+										],
+										formatter: '.formatter.calculateItemTotal'
+									}"
+									unit="{detailView>/currency}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</l:VerticalLayout>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction
+				id="shareEmail"
+				press="onSendEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:closeAction>
+			<semantic:CloseAction
+				id="closeColumn"
+				press="onCloseDetailPress"/>
+		</semantic:closeAction>
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction
+				id="enterFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+				press="toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction
+				id="exitFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
+				press="toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+	</semantic:SemanticPage>
+</mvc:View>

@@ -22,6 +22,21 @@
 -------------------------------------
 
 
+						title="{i18n>commonCustomerName}"
+						text="{detailView>/CompanyName}"/>
+					<ObjectAttribute
+						title="{i18n>detailOrderDate}"
+						text="{detailView>/OrderDate}"/>
+					<ObjectAttribute
+						title="{i18n>commonItemShipped}"
+						text="{= ${detailView>/ShippedDate} ?
+							 ${detailView>/ShippedDate}
+							:${i18n>commonItemNotYetShipped} }"/>
+
+
+-------------------------------------
+
+
 			"Customer": {
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/mockdata/Customer.json",

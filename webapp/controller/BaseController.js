@@ -5,6 +5,12 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.orderbrowser.controller.BaseController", {
+
+        extractPath: function(oEvent){
+            var order_id = oEvent.getParameter("arguments").order_id;
+            return '/orderTab/' + order_id;            
+        },
+
 		/**
 		 * Convenience method for accessing the router in every controller of the application.
 		 * @public

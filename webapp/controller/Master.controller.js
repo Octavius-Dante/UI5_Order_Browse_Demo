@@ -159,8 +159,8 @@ sap.ui.define(
         // 	this.getModel("masterView").setProperty("/titleCount", iCount);
         // 	}, this);
 
-        this.getRouter().getRoute("master").attachPatternMatched(this._onMasterMatched, this);
-        this.getRouter().attachBypassed(this.onBypassed, this);
+        // this.getRouter().getRoute("master").attachPatternMatched(this._onMasterMatched, this);
+        // this.getRouter().attachBypassed(this.onBypassed, this);
       },
 
       // Option two - Show total on TOP
@@ -188,19 +188,19 @@ sap.ui.define(
         });
       },
 
-      _onMasterMatched :  function() {
-        //Set the layout property of the FCL control to 'OneColumn'
-        this.getModel("appView").setProperty("/layout", "OneColumn");
-      },
+      // _onMasterMatched :  function() {
+      //   //Set the layout property of the FCL control to 'OneColumn'
+      //   this.getModel("appView").setProperty("/layout", "OneColumn");
+      // },
 
-      /**
-       * Event handler for the bypassed event, which is fired when no routing pattern matched.
-       * If there was an object selected in the master list, that selection is removed.
-       * @public
-       */
-      onBypassed: function () {
-        this._oList.removeSelections(true);
-      },
+      // /**
+      //  * Event handler for the bypassed event, which is fired when no routing pattern matched.
+      //  * If there was an object selected in the master list, that selection is removed.
+      //  * @public
+      //  */
+      // onBypassed: function () {
+      //   this._oList.removeSelections(true);
+      // },
 
 
 
@@ -348,9 +348,11 @@ sap.ui.define(
           "/layout",
           "TwoColumnsMidExpanded"
         );
+        debugger;
         this.getRouter().navTo(
           "object",
           {
+            
             objectId: oItem.getBindingContext().getProperty("OrderID"),
           },
           bReplace
@@ -402,7 +404,6 @@ sap.ui.define(
        * @private
        */
       _applyGrouper: function (oEvent) {        
-        debugger;
         var mParams = oEvent.getParameters(),
           sPath,
           bDescending,

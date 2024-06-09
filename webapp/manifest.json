@@ -15,6 +15,16 @@
 		"description": "{{appDescription}}",
 		"applicationVersion": {
 			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/here/goes/your/serviceUrl/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
 		}
 	},
 	"sap.ui": {
@@ -64,7 +74,27 @@
                 "type": "sap.ui.model.json.JSONModel",
                 "uri": "model/mockdata/Orders.json",
 				"preload": true
-            }
+            },
+			"Customer": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/mockdata/Customer.json",
+				"preload": true
+			},
+			"Product": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/mockdata/Product.json",
+				"preload": true
+			},
+			"Order_Details": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/mockdata/Order_Details.json",
+				"preload": true
+			},
+			"Employee": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/mockdata/Employee.json",
+				"preload": true
+			}
 
         },
 
@@ -104,6 +134,15 @@
 					"id": "detail",
 					"level": 1,
 					"controlAggregation": "midColumnPages"
+				},
+				"detailObjectNotFound": {
+					"name": "DetailObjectNotFound",
+					"id": "detailObjectNotFound",
+					"controlAggregation": "midColumnPages"
+				},
+				"notFound": {
+					"name": "NotFound",
+					"id": "notFound"
 				}
 			}
 		}
